@@ -24,6 +24,15 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+          query: {
+            plugins: [
+              ['import', {
+                libraryName: 'antd',
+                libraryDirectory: 'es',
+                style: 'css',
+              }],
+            ],
+          },
           options: options.babelQuery,
         },
       },
@@ -31,9 +40,18 @@ module.exports = (options) => ({
         // Preprocess our own .css files
         // This is the place to add your own loaders (e.g. sass/less etc.)
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
-        test: /\.css$/,
+        test: /\.less$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'less-loader',
+        ],
       },
       {
         // Preprocess 3rd party .css files located in node_modules

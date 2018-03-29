@@ -28,6 +28,7 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { Button } from 'antd';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -53,6 +54,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <title>Home Page</title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
+        {/* <Button href="/AntD">Go to Ant Design Page</Button> */}
         <div>
           <CenteredSection>
             <H2>
