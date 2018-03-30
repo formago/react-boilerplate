@@ -1,10 +1,25 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
+import reducer from './reducer';
+import saga from './saga';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectUsername } from './selectors';
+
+import { changeForm } from './actions'
 
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
+
+  constructor(props) {
+    super(props)  
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -22,7 +37,7 @@ class NormalLoginForm extends React.Component {
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input onChange={this.props.onChangeUsername} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
           )}
         </FormItem>
         <FormItem>
@@ -57,4 +72,29 @@ NormalLoginForm.propTypes = {
   form: 'any',
 };
 
-export default Form.create()(NormalLoginForm);
+export function mapDispatchToProps(dispatch) {
+  return {
+    onChangeUsername: (evt) => {
+      dispatch(changeForm({ username: event.target.value }))
+  
+    }  
+  }
+
+}
+
+const mapStateToProps = createStructuredSelector({
+  // username: makeSelectUsername()
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'loginform', reducer });
+const withSaga = injectSaga({ key: 'loginform', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(Form.create()(NormalLoginForm));
+
+
