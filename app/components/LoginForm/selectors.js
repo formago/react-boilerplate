@@ -2,17 +2,14 @@
  * Homepage selectors
  */
 
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
-const selectHome = (state) => state.get('home');
+const selectHome = state => state.get("loginform");
 
-debugger
-const makeSelectUsername = () => createSelector(  
-  selectHome,
-  (homeState) => "trgtr"
-);
+const makeSelectUsername = () =>
+  createSelector(selectHome, homeState => homeState.formState.username);
 
-export {
-  selectHome,
-  makeSelectUsername,
-};
+const makeSelectPassword = () =>
+  createSelector(selectHome, homeState => homeState.formState.password);
+
+export { selectHome, makeSelectUsername, makeSelectPassword };
