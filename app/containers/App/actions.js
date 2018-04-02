@@ -19,7 +19,16 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  USER_AUTHORIZED
 } from './constants';
+
+
+
+export function userAuthorized() {
+  return {
+    type: USER_AUTHORIZED,
+  };
+}
 
 /**
  * Load the repositories, this action starts the request saga
@@ -29,6 +38,7 @@ import {
 export function loadRepos() {
   return {
     type: LOAD_REPOS,
+    info
   };
 }
 
