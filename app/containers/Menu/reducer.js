@@ -11,8 +11,10 @@ const initialState = fromJS({
 function cabinetMenuReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_SUCCESS:
-      return state
-       .set('source', action.response);
+      if (action.response.list)
+        return state
+          .set('source', action.response.list);
+      else return state;
     default:
       return state;
   }

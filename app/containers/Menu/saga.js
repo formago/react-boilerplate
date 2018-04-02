@@ -7,14 +7,15 @@ import {
   REQUEST_ERROR,
 } from './constants';
 
-export function* loginFlow() {
+export function* menuFlow() {
   // Because sagas are generators, doing `while (true)` doesn't block our program
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     yield take(REQUEST);
 
-    try {
+    try {  
       const response = yield call(service.getMenu);
+      console.log(response);
       yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       yield put({ type: REQUEST_ERROR, error: error.message });
@@ -27,5 +28,5 @@ export function* loginFlow() {
 // Sagas are fired once at the start of an app and can be thought of as processes running
 // in the background, watching actions dispatched to the store.
 export default function* root() {
-  yield fork(loginFlow);
+  yield fork(menuFlow);
 }

@@ -31,13 +31,7 @@ let service = {
       .then((response) => {        
         return response.json();
       }).then(user => {
-        console.log(user);
       });
-
-
-    // console.log(response);
-
-    // return data;
   },
 
 };
