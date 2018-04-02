@@ -38,14 +38,9 @@ export default function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      {/* <Header /> */}
       <Switch>
-      <Route exact path="/" component={Default} />
-      <Route path="/Cabinet" component={Cabinet} />
-        {/* <Route exact path="/" component={HomePage} /> */}
-        {/* <Route path="/Antd" component={AndtPage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} /> */}
+        <Route exact path="/" component={Default} />
+        <Route path="/Cabinet" component={Cabinet} />
       </Switch>
       {/* <Footer /> */}
     </AppWrapper>

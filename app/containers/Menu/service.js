@@ -11,12 +11,11 @@ if (global.process && process.env.NODE_ENV === "test") {
 
 
 const service = {
-
   getMenu() {
     var token = localStorage.token;
     var url =
       'http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu?atoken=' + token;   
-    return fetch(url).then(responce=>responce.json());
+    return request(url);
 
     // let userInfo;
     // return fetch(url, {

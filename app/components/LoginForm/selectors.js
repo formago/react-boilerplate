@@ -4,7 +4,7 @@
 
 import { createSelector } from "reselect";
 
-const selectHome = state => state.get("loginform");
+const selectHome = state => state.get("loginForm");
 
 const makeSelectUsername = () =>
   createSelector(selectHome, homeState => homeState.formState.username);
