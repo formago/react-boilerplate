@@ -57,6 +57,27 @@ export function* authorize({ username, password, isRegistering }) {
     yield put({ type: SENDING_REQUEST, sending: false });
   }
 }
+
+
+export function* refresh() {
+  while (true) { 
+    try {  
+      const response = yield call(auth.refreshAccessToken);
+      console.log(response);
+      // yield put({ type: REQUEST_SUCCESS, response });
+    } catch (error) {
+      // yield put({ type: REQUEST_ERROR, error: error.message });
+    }
+  }
+}
+
+
+
+
+
+
+
+
 /**
  * Effect to handle logging out
  */
@@ -76,10 +97,10 @@ export function* logout() {
     yield put({ type: REQUEST_ERROR, error: error.message });
   }
 }
-
 /**
  * Log in saga
  */
+
 export function* loginFlow() {
   // Because sagas are generators, doing `while (true)` doesn't block our program
   // Basically here we say "this saga is always listening for actions"
@@ -100,6 +121,10 @@ export function* loginFlow() {
     // If `authorize` was the winner...
     if (winner.auth) {
       // yield put(userAuthorized(username, password));
+
+      setInterval(function(){
+        call(refresh);
+      }, 5000);
 
       yield put({
         type: CHANGE_FORM,

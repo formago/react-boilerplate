@@ -8,7 +8,7 @@ const initialState = fromJS({
   source: [],
 });
 
-function cabinetMenuReducer(state = initialState, action) {
+function cabinetMenuReducer(state = initialState, action) {  
   switch (action.type) {
     case REQUEST_SUCCESS:
       if (action)

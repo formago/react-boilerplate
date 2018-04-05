@@ -27,6 +27,24 @@ const request = {
         return server.register(data.username, data.password);
       case "/logout":
         return server.logout();
+      case "/refresh":
+        var url =
+          "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/refresh/";
+
+        var refreshToken = localStorage.refreshToken;
+        // var url =
+        //   "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu?refresh_atoken=" +
+        //   refreshToken;
+        return fetch(url, {
+          method: "GET",
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            "refresh_atoken": refreshToken
+          }),
+        }).then(response => {
+          
+          return response.json();
+        });
       default:
         break;
     }
