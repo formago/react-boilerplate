@@ -67,14 +67,6 @@ class TableComponent extends React.Component {   // eslint-disable-line
     this.setState({ scroll: enable ? scroll : undefined });
   };
 
-  componentDidMount() {
-    this.getGridData();
-  }
-
-  getGridData(){
-    this.props.dispatch(getGridItems()); // don't do it if we have loaded menu before, need check!
-  }
-
   render() {
     const state = this.state;
     return (

@@ -1,14 +1,17 @@
-/* eslint-disable */
 import { createSelector } from 'reselect';
 
-const selectGrid = (state) => state.get('grid');
+const selectClients = (state) => state.get('clients');
 
 const makeSource = () => createSelector(
-  selectGrid,
+  selectClients,
   (gridState) => gridState.get('gridSource')
 );
-
+const makeColumns = () => createSelector(
+  selectClients,
+  (gridState) => gridState.get('gridColumns')
+);
 export {
-  selectGrid,
+  selectClients,
   makeSource,
+  makeColumns
 };
