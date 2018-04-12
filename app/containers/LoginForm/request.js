@@ -10,8 +10,8 @@ const request = {
         var url =
           "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/login/";
         var requestData = {
-          login: "user1",
-          password: "123123"
+          login: "user2",
+          password: "555777"
         };
         let userInfo;
         return fetch(url, {

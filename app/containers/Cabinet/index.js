@@ -6,7 +6,7 @@ import Home from 'containers/Cabinet/Home/Loadable';
 import Documents from 'containers/Cabinet/Documents/Loadable';
 import Statements from 'containers/Cabinet/Statements/Loadable';
 import AntDPage from 'containers/AntDPage/Loadable';
-import TablePage from 'containers/Cabinet/TablePage/Loadable';
+import Clients from 'containers/Cabinet/Clients/Loadable';
 import CabinetMenu from 'containers/Menu';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -44,7 +44,7 @@ export default class Cabinet extends React.PureComponent {
               <Route path="/Cabinet/Documents" component={Documents} />
               <Route path="/Cabinet/Statements" component={Statements} />
               <Route path="/Cabinet/AntDPage" component={AntDPage} />
-              <Route path="/Cabinet/TablePage" component={TablePage} />
+              <Route path="/Cabinet/clientcore/clients/clients" component={Clients} />
             </Switch>
           </Content>
           <Footer>footer</Footer>

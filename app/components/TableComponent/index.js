@@ -7,64 +7,19 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 
-import injectSaga from 'utils/injectSaga';
-
-import { createStructuredSelector } from 'reselect';
-
-import injectReducer from 'utils/injectReducer';
 import { connect } from 'react-redux';
-import { getGridItems } from './actions';
-import reducer from './reducer';
-import saga from './saga';
-import { makeSource } from './selectors';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    width: 150,
-    render: (text) => <a href="#">{text}</a>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-    width: 70,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    width: 360,
-    render: (text, record) => (
-      <span>
-        <a href="#">Action 一 {record.name}</a>
-        <Divider type="vertical" />
-        <a href="#">Delete</a>
-        <Divider type="vertical" />
-        <a href="#" className="ant-dropdown-link">
-          More actions <Icon type="down" />
-        </a>
-      </span>
-    ),
-  },
-];
 const expandedRowRender = (record) => <p>{record.description}</p>;
 const title = () => 'Here is title';
 const showHeader = true;
 const footer = () => 'Here is footer';
 const scroll = { y: 240 };
 
-class TableDemo extends React.Component {   // eslint-disable-line
+class TableComponent extends React.Component {   // eslint-disable-line
   state = {
     bordered: false,
     loading: false,
@@ -193,14 +148,15 @@ class TableDemo extends React.Component {   // eslint-disable-line
             </FormItem>
           </Form>
         </div>
-        <Table {...this.state} columns={columns} dataSource={this.props.gridSource} />
+        <Table {...this.state} columns={this.props.columns} dataSource={this.props.gridSource} />
       </div>
     );
   }
 }
 
 
-TableDemo.propTypes = {
+TableComponent.propTypes = {
+  columns : PropTypes.array,
   gridSource: PropTypes.array,
   dispatch: React.PropTypes.func,
 };
@@ -211,16 +167,16 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  gridSource: makeSource(),
-});
+// const mapStateToProps = createStructuredSelector({
+//   gridSource: makeSource(),
+// });
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer({ key: 'grid', reducer });
-const withSaga = injectSaga({ key: 'grid', saga });
+const withConnect = connect(null, mapDispatchToProps);
+// const withReducer = injectReducer({ key: 'grid', reducer });
+// const withSaga = injectSaga({ key: 'grid', saga });
 
 export default compose(
-  withReducer,
-  withSaga,
+  // withReducer,
+  // withSaga,
   withConnect,
-)(TableDemo);
+)(TableComponent);

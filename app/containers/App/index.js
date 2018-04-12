@@ -60,11 +60,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
-  // componentDidMount() {
-  //   setInterval(function () {
-  //     auth.refreshAccessToken();
-  //   }, 10000)
-  // }
+  componentDidMount() {
+    setInterval(function () {
+      auth.refreshAccessToken();
+    }, 10000)
+  }
   render() {
     return (
       <AppWrapper>

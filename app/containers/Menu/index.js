@@ -30,7 +30,7 @@ class CabinetMenu extends React.Component {
       return (<MenuItem key={it.menuId}>
         <Icon type={it.icon} />
         <span>{it.menuName}</span>
-        <Link to={it.url}></Link>
+        <Link to={"/Cabinet/"+it.url}></Link>
       </MenuItem>);
     }
     return (<SubMenu key={it.menuId} title={<span><Icon type={it.icon} /><span>{it.menuName}</span></span>}>
