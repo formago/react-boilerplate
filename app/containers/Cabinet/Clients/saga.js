@@ -13,9 +13,9 @@ export function* gridFlow() {
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     yield take(REQUEST);
-
     try {
       const response = yield call(service.getGrid);
+      console.log(response);
       yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       yield put({ type: REQUEST_ERROR, error: error.message });

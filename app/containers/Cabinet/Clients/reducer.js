@@ -11,9 +11,9 @@ const initialState = fromJS({
 
 function gridReducer(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_SUCCESS:
+    case REQUEST_SUCCESS:    
       return state
-       .set('gridSource', action.response);
+        .set('gridSource', action.response.list);
     default:
       return state;
   }

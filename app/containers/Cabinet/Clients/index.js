@@ -29,11 +29,6 @@ class Clients extends React.Component {
     super()
   }
 
-  // componentWillMount() {
-  //   this.props.columns = getClientsModel();
-
-  // }
-
   componentWillMount() {
     this.getGridData();
   }
@@ -52,11 +47,10 @@ class Clients extends React.Component {
   }
 }
 
-
 Clients.propTypes = {
   columns: PropTypes.array,
   gridSource: PropTypes.array,
-  dispatch: React.PropTypes.func,
+  dispatch: React.PropTypes.func
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -67,7 +61,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   gridSource: makeSource(),
-  columns: getClientsModel
+  columns: getClientsModel,  
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
