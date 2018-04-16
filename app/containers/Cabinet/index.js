@@ -22,7 +22,7 @@ export default class Cabinet extends React.PureComponent {
 
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: '100vh' }} className="cabinet">
         <Sider
           collapsible
           collapsed={this.state.collapsed}
