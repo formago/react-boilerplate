@@ -21,7 +21,9 @@ let service = {
 
     console.log(parameters);
     
-    let url = `${baseURL}${listURL}?atoken=${accessToken}`;
+    // let url = `${baseURL}${listURL}?atoken=${accessToken}`;
+
+    let url = `http://localhost:3004/clients`;
 
     let myHeaders = {
       'Content-Type': 'application/json',
@@ -29,8 +31,8 @@ let service = {
     };
 
     return fetch(url, {
-      method: "POST",
-      // headers: myHeaders,
+      method: "GET",
+      headers: myHeaders,
       // mode: 'no-cors'
     }).then(function (response) {
       if (response.ok) {

@@ -40,7 +40,9 @@ class Clients extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/">Go to Home Page</Link>
+         <h1>
+          Клиенты
+        </h1>    
         <TableComponent columns={this.props.columns} gridSource={this.props.gridSource} />
       </div>
     );

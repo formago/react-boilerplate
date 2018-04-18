@@ -25,10 +25,10 @@ class TableComponent extends React.Component {   // eslint-disable-line
     loading: false,
     pagination: true,
     size: 'default',
-    expandedRowRender,
-    title,
+    expandedRowRender:false,
+    title:false,
     showHeader,
-    footer,
+    footer: false,
     rowSelection: {},
     scroll: undefined,
   };
@@ -71,7 +71,7 @@ class TableComponent extends React.Component {   // eslint-disable-line
     const state = this.state;
     return (
       <div>
-        <div className="components-table-demo-control-bar">
+        {/* <div className="components-table-demo-control-bar">
           <Form layout="inline">
             <FormItem label="Bordered">
               <Switch
@@ -139,7 +139,7 @@ class TableComponent extends React.Component {   // eslint-disable-line
               </RadioGroup>
             </FormItem>
           </Form>
-        </div>
+        </div> */}
         <Table {...this.state} columns={this.props.columns} dataSource={this.props.gridSource} />
       </div>
     );

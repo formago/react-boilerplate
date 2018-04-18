@@ -37,9 +37,6 @@ export default class Home extends React.PureComponent { // eslint-disable-line r
         y: 1231,
       },
     ];
-
-
-
     return (
       <div>
         <h1>
