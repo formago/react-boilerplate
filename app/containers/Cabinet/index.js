@@ -9,7 +9,7 @@ import AntDPage from "containers/AntDPage/Loadable";
 import Clients from "containers/Cabinet/Clients/Loadable";
 import CabinetMenu from "containers/Menu";
 import Logo from "components/Logo";
-import H2 from "components/H2";
+import H1 from "components/H1";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -17,22 +17,23 @@ export default class Cabinet extends React.PureComponent {
   state = {
     collapsed: false
   };
-  onCollapse = collapsed => {
+  onCollapse = collapsed => {    
     console.log(collapsed);
     this.setState({ collapsed });
   };
 
-  render() {
+  render() {    
     return (
       <Layout style={{ minHeight: "100vh" }} className="cabinet">
         <Sider
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
+          width="250"
         >
-          <div className="bank-logo" style={{ display: "table" }}>
+          <div className="bank-logo" style={{}}>
             <Logo />
-            <H2
+            <H1
               style={{
                 color: "white",
                 float: "right",
@@ -42,9 +43,9 @@ export default class Cabinet extends React.PureComponent {
               }}
             >
               Банк
-            </H2>
+            </H1>
           </div>
-          <CabinetMenu />
+          <CabinetMenu {...this.state}/>
         </Sider>
         <Layout>
           <Header style={{ color: "white" }}>
@@ -57,10 +58,8 @@ export default class Cabinet extends React.PureComponent {
           </Header>
           <Content
             style={{
-              margin: 30,
-              padding: 15,
-              border: "1px solid lightgray",
-              borderRadius: 4
+              margin: "24px 24px 0px",
+              height: "100%"         
             }}
           >
             <Switch>

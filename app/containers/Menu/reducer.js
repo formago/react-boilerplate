@@ -12,7 +12,7 @@ function cabinetMenuReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_SUCCESS:
       if (action)
-      {        
+      {     
         return state
           .set('source', action.response.list);
       }

@@ -48,6 +48,7 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+import 'ant-design-pro/dist/ant-design-pro.css';
 import './content/styles/main.less';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in

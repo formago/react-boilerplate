@@ -26,14 +26,14 @@ class CabinetMenu extends React.Component {
   }
 
   call = function (it) {
-    if (it.childList.length === 0) {
+    if (it.childList && it.childList.length === 0) {
       return (<MenuItem key={it.menuId}>
-        <Icon type={it.icon} />
+        <Icon type="user" />
         <span>{it.menuName}</span>
-        <Link to={"/Cabinet/"+it.url}></Link>
+        <Link to={"/Cabinet/" + it.url}> </Link>
       </MenuItem>);
     }
-    return (<SubMenu key={it.menuId} title={<span><Icon type={it.icon} /><span>{it.menuName}</span></span>}>
+    return (<SubMenu key={it.menuId} title={<span><Icon type="link" /><span>{it.menuName}</span></span>}>
       {it.childList.map((subit) => (this.call(subit)))}
     </SubMenu>);
   }
@@ -42,8 +42,9 @@ class CabinetMenu extends React.Component {
   // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
+    console.log(this.props);
     return (
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" className="cabinet-menu">
+      <Menu theme="dark" defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
         {this.props.source.map((it) => this.call(it))}
       </Menu>
