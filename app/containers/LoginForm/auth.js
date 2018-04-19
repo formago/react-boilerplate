@@ -25,13 +25,15 @@ const auth = {
       localStorage.refreshToken = response.armRefreshToken;
       localStorage.user = JSON.stringify(response);
       return response;
+    }).catch(function (error) {      
+      console.log(error.message)
     });
   },
 
-  refreshAccessToken() {    
+  refreshAccessToken() {
     return request.post("/refresh").then(response => {
       // Save token to local storage
-      localStorage.token = response.accessToken;       
+      localStorage.token = response.accessToken;
       return response;
     });
   },
@@ -61,7 +63,7 @@ const auth = {
         .then(() => auth.login(username, password))
     );
   },
-  onChange() {}
+  onChange() { }
 };
 
 export default auth;

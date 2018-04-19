@@ -15,6 +15,7 @@ import { userAuthorized } from "./../App/actions";
 import {
   SENDING_REQUEST,
   LOGIN_REQUEST,
+  TEST_REQUEST,
   REGISTER_REQUEST,
   SET_AUTH,
   LOGOUT,
@@ -60,22 +61,15 @@ export function* authorize({ username, password, isRegistering }) {
 
 
 export function* refresh() {
-  while (true) { 
-    try {  
+  while (true) {
+    try {
       const response = yield call(auth.refreshAccessToken);
-      console.log(response);
       // yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       // yield put({ type: REQUEST_ERROR, error: error.message });
     }
   }
 }
-
-
-
-
-
-
 
 
 /**
@@ -122,7 +116,7 @@ export function* loginFlow() {
     if (winner.auth) {
       // yield put(userAuthorized(username, password));
 
-      setInterval(function(){
+      setInterval(function () {
         call(refresh);
       }, 5000);
 
@@ -130,10 +124,44 @@ export function* loginFlow() {
         type: CHANGE_FORM,
         newFormState: { username: "", password: "" }
       });
-      debugger;
       // ...we send Redux appropiate actions
       yield put({ type: SET_AUTH, newAuthState: true }); // User is logged in (authorized)
 
+      yield put(push("/Cabinet"));
+    }
+  }
+}
+
+export function* testLoginFlow() {
+  // Because sagas are generators, doing `while (true)` doesn't block our program
+  // Basically here we say "this saga is always listening for actions"
+  while (true) {
+    // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
+    const request = yield take(TEST_REQUEST);
+
+    const username = "user1";
+    const password = "123123";
+    // A `LOGOUT` action may happen while the `authorize` effect is going on, which may
+    // lead to a race condition. This is unlikely, but just in case, we call `race` which
+    // returns the "winner", i.e. the one that finished first
+    const winner = yield race({
+      auth: call(authorize, { username, password, isRegistering: false }),
+      logout: take(LOGOUT)
+    });
+
+    // If `authorize` was the winner...
+    if (winner.auth) {
+      // yield put(userAuthorized(username, password));
+      setInterval(function () {
+        call(refresh);
+      }, 5000);
+
+      yield put({
+        type: CHANGE_FORM,
+        newFormState: { username: "", password: "" }
+      });
+      // ...we send Redux appropiate actions
+      yield put({ type: SET_AUTH, newAuthState: true }); // User is logged in (authorized)
       yield put(push("/Cabinet"));
     }
   }
@@ -190,6 +218,7 @@ export function* registerFlow() {
 // in the background, watching actions dispatched to the store.
 export default function* root() {
   yield fork(loginFlow);
+  yield fork(testLoginFlow);
   yield fork(logoutFlow);
   yield fork(registerFlow);
 }

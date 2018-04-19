@@ -19,21 +19,35 @@ let service = {
     let listURL = keys.clients.list;
     let accessToken = localStorage.token;
 
-    console.log(parameters);
-    
-    // let url = `${baseURL}${listURL}?atoken=${accessToken}`;
+    // baseURL = "http://localhost:3001";
+    // listURL = "/clients";
 
-    let url = `http://localhost:3004/clients`;
+    let url = `${baseURL}${listURL}?atoken=${accessToken}`;  
+
+    let withUrlParameters = true;
+    if (!withUrlParameters) {
+      url = url.split("?")[0];
+    }
 
     let myHeaders = {
-      'Content-Type': 'application/json',
+      // "Content-type": "application/json",
       "atoken": localStorage.token
     };
 
-    return fetch(url, {
-      method: "GET",
+    let parameters = [{
+      key: "atoken",
+      value: localStorage.token
+    },
+    {
+      key: "Content-Type",
+      value: "application/json"
+    }];
+
+    return  fetch(url, {
+      method: "POST",    
       headers: myHeaders,
-      // mode: 'no-cors'
+      body: null,
+      // mode: "no-cors"      
     }).then(function (response) {
       if (response.ok) {
         return response;
@@ -44,6 +58,18 @@ let service = {
     }).catch(function (error) {
       console.log('Request failed:', error.message);
     });
+
+    // return httpPost(url, parameters).then(function (response) {
+    //   console.log(response)
+    //   if (response.ok) {
+    //     return response;
+    //   }
+    //   throw Error(response.statusText);
+    // }).then(function (response) {
+    //   return response.json();
+    // }).catch(function (error) {
+    //   console.log('Request failed:', error.message);
+    // });
 
   },
 

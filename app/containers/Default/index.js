@@ -8,16 +8,11 @@ const { Header, Content, Footer } = Layout;
 const MenuItem = Menu.Item;
 
 export default class Default extends React.Component {
-  
-  // constructor(props){
-  //   console.log(props)
-  // }
 
   state = {
     collapsed: false,
   };
-  onCollapse = (collapsed) => {
-    console.log(collapsed);
+  onCollapse = (collapsed) => {   
     this.setState({ collapsed });
   };
 

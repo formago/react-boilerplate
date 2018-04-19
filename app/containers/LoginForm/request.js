@@ -10,8 +10,8 @@ const request = {
         var url =
           "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/login/";
         var requestData = {
-          login: "user2",
-          password: "555777"
+          login: data.username,
+          password: data.password
         };
         let userInfo;
         return fetch(url, {
@@ -21,8 +21,21 @@ const request = {
           },
           body: JSON.stringify(requestData)
         }).then(response => {
-          return response.json();
-        });
+          if (response.ok)
+            return response.json();
+          else return response.json();
+        }, error => {
+          console.log(error)
+        })
+          .then(response => {
+            if (response.errMessForClient) {
+              throw new Error(response.errMessForClient);
+            }
+            else {
+              return response;
+            }
+          });
+
       case "/register":
         return server.register(data.username, data.password);
       case "/logout":
@@ -30,7 +43,6 @@ const request = {
       case "/refresh":
         var url =
           "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/refresh/";
-
         var refreshToken = localStorage.refreshToken;
         // var url =
         //   "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu?refresh_atoken=" +
@@ -42,7 +54,7 @@ const request = {
             "refresh_atoken": refreshToken
           }),
         }).then(response => {
-          
+
           return response.json();
         });
       default:

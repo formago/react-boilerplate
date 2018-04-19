@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link, Switch, Route } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Popover, Button } from "antd";
 import Home from "containers/Cabinet/Home/Loadable";
 import Documents from "containers/Cabinet/Documents/Loadable";
 import Statements from "containers/Cabinet/Statements/Loadable";
@@ -17,12 +17,12 @@ export default class Cabinet extends React.PureComponent {
   state = {
     collapsed: false
   };
-  onCollapse = collapsed => {    
+  onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
 
-  render() {    
+  render() {
     return (
       <Layout style={{ minHeight: "100vh" }} className="cabinet">
         <Sider
@@ -45,12 +45,14 @@ export default class Cabinet extends React.PureComponent {
               Банк
             </H1>
           </div>
-          <CabinetMenu {...this.state}/>
+          <CabinetMenu {...this.state} />
         </Sider>
         <Layout>
-          <Header style={{ color: "white" }}>
+          <Header>
             <div style={{ textAlign: "right" }}>
-              <span>Username</span>
+              <Popover placement="bottom" title="UserName" trigger="click">
+                <Button type="ghost">UserName</Button>
+              </Popover>
               <Link to="/" style={{ marginLeft: 20 }}>
                 Logout
               </Link>
@@ -59,7 +61,7 @@ export default class Cabinet extends React.PureComponent {
           <Content
             style={{
               margin: "24px 24px 0px",
-              height: "100%"         
+              height: "100%"
             }}
           >
             <Switch>

@@ -1,8 +1,15 @@
-export function httpPost(url) {
-    return new Promise(function (resolve, reject) {
-        debugger
+
+
+export function httpPost(url, headers) {
+    return new Promise(function (resolve, reject) {        
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
+        xhr.open('POST', url, false);
+
+        if(headers instanceof Array){
+            headers.forEach((element)=>{
+                xhr.setRequestHeader(element.key, element.value)
+            });
+        }
 
         xhr.onload = function () {
             if (this.status == 200) {
@@ -24,8 +31,7 @@ export function httpPost(url) {
 }
 
 export function httpGet(url) {
-    return new Promise(function (resolve, reject) {
-        debugger
+    return new Promise(function (resolve, reject) {        
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
 

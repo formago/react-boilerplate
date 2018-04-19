@@ -14,8 +14,7 @@ export function* menuFlow() {
     yield take(REQUEST);
 
     try {  
-      const response = yield call(service.getMenu);
-      console.log(response);
+      const response = yield call(service.getMenu);  
       yield put({ type: REQUEST_SUCCESS, response });
     } catch (error) {
       yield put({ type: REQUEST_ERROR, error: error.message });

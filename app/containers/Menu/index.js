@@ -17,7 +17,7 @@ const MenuItem = Menu.Item;
 
 class CabinetMenu extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.getMenu();
   }
 
@@ -42,7 +42,6 @@ class CabinetMenu extends React.Component {
   // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
-    console.log(this.props);
     return (
       <Menu theme="dark" defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}

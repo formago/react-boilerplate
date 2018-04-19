@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { makeSelectUsername, makeSelectPassword } from "./selectors";
 
-import { changeUserName, changePassword, loginRequest } from "./actions";
+import { changeUserName, changePassword, loginRequest, testEntry } from "./actions";
 
 const FormItem = Form.Item;
 
@@ -27,42 +27,47 @@ class NormalLoginForm extends React.Component {
       <Form onSubmit={this.props.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator("userName", {
-            rules: [{ required: true, message: "Please input your username!" }]
+            rules: [{ required: true, message: "Введите имя пользователя" }]
           })(
             <Input
               onChange={this.props.onChangeUsername}
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Username"
+              placeholder="Логин"
             />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator("password", {
-            rules: [{ required: true, message: "Please input your Password!" }]
+            rules: [{ required: true, message: "Введите пароль" }]
           })(
             <Input
               onChange={this.props.onChangePassword}
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
             />
           )}
         </FormItem>
-        <FormItem>
-          {getFieldDecorator("remember", {
+        <FormItem style={{textAlign:"right"}}>
+          {/* {getFieldDecorator("remember", {
             valuePropName: "checked",
             initialValue: true
-          })(<Checkbox>Remember me</Checkbox>)}
+          })(<Checkbox>Remember me</Checkbox>)} */}
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            style={{marginRight:"15px"}}
           >
-            Log in
+            Войти
           </Button>
-          <Link to="/Cabinet/" className="ant-btn" style={{ marginLeft: 20 }}>
-            Demo
-          </Link>
+
+          <Button       
+            htmlType="button"
+            className="login-form-button"  
+            onClick={this.props.testEntry}        >
+            Тестовый вход
+          </Button>
         </FormItem>
       </Form>
     );
@@ -72,18 +77,22 @@ class NormalLoginForm extends React.Component {
 NormalLoginForm.propTypes = {
   form: "any"
 };
-const mapDispatchToProps = function(dispatch, props) {
-   return {
+const mapDispatchToProps = function (dispatch, props) {
+  return {
     onChangeUsername: event => {
-      dispatch(changeUserName({ username: event.target.value }));
+      dispatch(changeUserName(event.target.value));
     },
     onChangePassword: event => {
-      dispatch(changePassword({ password: event.target.value }));
+      dispatch(changePassword(event.target.value));
     },
     handleSubmit: event => {
       event.preventDefault();
       dispatch(loginRequest());
-    }
+    },
+    testEntry:event => {
+      event.preventDefault();
+      dispatch(testEntry());
+    },
   };
 };
 

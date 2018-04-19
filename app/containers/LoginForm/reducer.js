@@ -29,13 +29,13 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_FORM:
       return { ...state, formState: action.newFormState };
-    case CHANGE_USERNAME:
+    case CHANGE_USERNAME:    
       var newFormState = {
         ...state.formState,
         username: action.newUserName
       };
       return { ...state, formState: newFormState };
-    case CHANGE_PASSWORD:
+    case CHANGE_PASSWORD:    
       var newFormState = {
         ...state.formState,
         password: action.newPassword
