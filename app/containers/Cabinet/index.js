@@ -2,11 +2,11 @@ import React from "react";
 
 import { Link, Switch, Route } from "react-router-dom";
 import { Layout, Popover, Button } from "antd";
-import Home from "containers/Cabinet/Home/Loadable";
-import Documents from "containers/Cabinet/Documents/Loadable";
-import Statements from "containers/Cabinet/Statements/Loadable";
+import Home from "containers/Home/Loadable";
+import Documents from "containers/Documents/Loadable";
+import Statements from "containers/Statements/Loadable";
 import AntDPage from "containers/AntDPage/Loadable";
-import Clients from "containers/Cabinet/Clients/Loadable";
+import Clients from "containers/Clients/Loadable";
 import CabinetMenu from "containers/Menu";
 import Logo from "components/Logo";
 import H1 from "components/H1";
@@ -18,7 +18,6 @@ export default class Cabinet extends React.PureComponent {
     collapsed: false
   };
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 

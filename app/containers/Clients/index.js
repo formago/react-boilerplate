@@ -18,7 +18,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSource } from './selectors';
 
-import TableComponent from '../../../components/TableComponent';
+import TableComponent from 'components/TableComponent';
 
 import getClientsModel from './clientsModel';
 

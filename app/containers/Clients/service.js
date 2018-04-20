@@ -1,5 +1,5 @@
 /* eslint-disable */
-const keys = require('../../../config/endpoints');
+const keys = require('config/endpoints');
 import { httpGet, httpPost } from 'utils/httpRequest';
 import parameters from './parameters';
 
@@ -24,7 +24,7 @@ let service = {
 
     let url = `${baseURL}${listURL}?atoken=${accessToken}`;  
 
-    let withUrlParameters = true;
+    let withUrlParameters = false;
     if (!withUrlParameters) {
       url = url.split("?")[0];
     }
