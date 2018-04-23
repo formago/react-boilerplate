@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React from 'react';
-import { Table, Icon, Switch, Radio, Form, Divider } from 'antd';
+import { Table, Icon, Switch, Radio, Form, Divider, Card } from 'antd';
 
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -40,10 +40,14 @@ class Clients extends React.Component {
   render() {
     return (
       <div>
-         <h1>
+        <h1>
           Клиенты
-        </h1>    
-        <TableComponent columns={this.props.columns} gridSource={this.props.gridSource} />
+        </h1>
+
+        <Card title="Фильтр" extra={<a href="#">More</a>}>
+          <TableComponent columns={this.props.columns} gridSource={this.props.gridSource} />
+        </Card>
+
       </div>
     );
   }
@@ -63,7 +67,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   gridSource: makeSource(),
-  columns: getClientsModel,  
+  columns: getClientsModel,
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

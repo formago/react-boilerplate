@@ -12,7 +12,7 @@ class Chat extends  React.Component  {
             author: 'them',
             type: 'text',
             data: {
-              text: 'Hello, how are you? Can i help you maybe?'
+              text: 'Hello, how are you? I can help you!'
             }
           },          
           {

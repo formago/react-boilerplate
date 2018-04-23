@@ -83,7 +83,6 @@ export default class Cabinet extends React.PureComponent {
               </Col>
             </Row>
           </Content>
-          <Footer>footer</Footer>
         </Layout>
       </Layout>
     );
