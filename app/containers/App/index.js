@@ -21,6 +21,7 @@ import Cabinet from 'containers/Cabinet/Loadable';
 import Default from 'containers/Default/Loadable';
 
 
+
 import reducer from "./reducer";
 // import saga from "./saga";
 import injectReducer from "utils/injectReducer";
@@ -28,6 +29,7 @@ import injectReducer from "utils/injectReducer";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import auth from "../LoginForm/auth";
+
 
 const AppWrapper = styled.div`
   // max-width: calc(768px + 16px * 2);
@@ -37,24 +39,6 @@ const AppWrapper = styled.div`
   padding: 0 16px;
   flex-direction: column;
 `;
-
-// export default function App() {
-//   return (
-//     <AppWrapper>
-//       <Helmet
-//         titleTemplate="%s - React.js Boilerplate"
-//         defaultTitle="React.js Boilerplate"
-//       >
-//         <meta name="description" content="A React.js Boilerplate application" />
-//       </Helmet>
-//       <Switch>
-//         <Route exact path="/" component={Default} />
-//         <Route path="/Cabinet" component={Cabinet} />
-//       </Switch>
-//       {/* <Footer /> */}
-//     </AppWrapper>
-//   );
-// }
 
 class App extends React.Component {
   constructor(props) {
@@ -78,17 +62,12 @@ class App extends React.Component {
           <Route exact path="/" component={Default} />
           <Route path="/Cabinet" component={Cabinet} />
         </Switch>
+
         {/* <Footer /> */}
       </AppWrapper>
+
     );
   }
 }
-
-// const mapDispatchToProps = function (dispatch, props) {
-//   return {};
-// };
-// const withConnect = connect(null, mapDispatchToProps);
-// const withReducer = injectReducer({ key: "app", reducer });
-// const withSaga = injectSaga({ key: "app", saga });
 
 export default App;

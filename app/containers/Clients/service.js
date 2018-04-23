@@ -17,31 +17,14 @@ let service = {
 
     let baseURL = keys.baseURL;
     let listURL = keys.clients.list;
-    let accessToken = localStorage.token;
+    let accessToken = localStorage.token;  
 
-    // baseURL = "http://localhost:3001";
-    // listURL = "/clients";
-
-    let url = `${baseURL}${listURL}?atoken=${accessToken}`;  
-
-    let withUrlParameters = false;
-    if (!withUrlParameters) {
-      url = url.split("?")[0];
-    }
+    let url = `${baseURL}${listURL}`;  
 
     let myHeaders = {
-      // "Content-type": "application/json",
+      "Content-type": "application/json",
       "atoken": localStorage.token
-    };
-
-    let parameters = [{
-      key: "atoken",
-      value: localStorage.token
-    },
-    {
-      key: "Content-Type",
-      value: "application/json"
-    }];
+    }; 
 
     return  fetch(url, {
       method: "POST",    
@@ -58,18 +41,6 @@ let service = {
     }).catch(function (error) {
       console.log('Request failed:', error.message);
     });
-
-    // return httpPost(url, parameters).then(function (response) {
-    //   console.log(response)
-    //   if (response.ok) {
-    //     return response;
-    //   }
-    //   throw Error(response.statusText);
-    // }).then(function (response) {
-    //   return response.json();
-    // }).catch(function (error) {
-    //   console.log('Request failed:', error.message);
-    // });
 
   },
 

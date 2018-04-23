@@ -1,10 +1,11 @@
 import React from "react";
 
 import { Link, Switch, Route } from "react-router-dom";
-import { Layout, Popover, Button } from "antd";
+import { Layout, Popover, Button, Row, Col } from "antd";
 import Home from "containers/Home/Loadable";
 import Documents from "containers/Documents/Loadable";
 import Statements from "containers/Statements/Loadable";
+import Chat from "containers/Chat/index";
 import AntDPage from "containers/AntDPage/Loadable";
 import Clients from "containers/Clients/Loadable";
 import CabinetMenu from "containers/Menu";
@@ -63,16 +64,24 @@ export default class Cabinet extends React.PureComponent {
               height: "100%"
             }}
           >
-            <Switch>
-              <Route exact path="/Cabinet" component={Home} />
-              <Route path="/Cabinet/Documents" component={Documents} />
-              <Route path="/Cabinet/Statements" component={Statements} />
-              <Route path="/Cabinet/AntDPage" component={AntDPage} />
-              <Route
-                path="/Cabinet/clientcore/clients/clients"
-                component={Clients}
-              />
-            </Switch>
+
+            <Row>
+              <Col span={15}>
+                <Switch>
+                  <Route exact path="/Cabinet" component={Home} />
+                  <Route path="/Cabinet/Documents" component={Documents} />
+                  <Route path="/Cabinet/Statements" component={Statements} />
+                  <Route path="/Cabinet/AntDPage" component={AntDPage} />
+                  <Route
+                    path="/Cabinet/clientcore/clients/clients"
+                    component={Clients}
+                  />
+                </Switch>
+              </Col>
+              <Col span={9}>
+                <Chat />
+              </Col>
+            </Row>
           </Content>
           <Footer>footer</Footer>
         </Layout>
