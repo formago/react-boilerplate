@@ -11,6 +11,7 @@ import Clients from "containers/Clients/Loadable";
 import CabinetMenu from "containers/Menu";
 import Logo from "components/Logo";
 import H1 from "components/H1";
+import { HeaderArea } from "components/HeaderArea";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -48,16 +49,7 @@ export default class Cabinet extends React.PureComponent {
           <CabinetMenu {...this.state} />
         </Sider>
         <Layout>
-          <Header>
-            <div style={{ textAlign: "right" }}>
-              <Popover placement="bottom" title="UserName" trigger="click">
-                <Button type="ghost">UserName</Button>
-              </Popover>
-              <Link to="/" style={{ marginLeft: 20 }}>
-                Logout
-              </Link>
-            </div>
-          </Header>
+          <HeaderArea />
           <Content
             style={{
               margin: "24px 24px 0px",

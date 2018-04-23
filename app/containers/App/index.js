@@ -47,7 +47,7 @@ class App extends React.Component {
   componentDidMount() {
     setInterval(function () {
       auth.refreshAccessToken();
-    }, 50000)
+    }, 500000)
   }
   render() {
     return (

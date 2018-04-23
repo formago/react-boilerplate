@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React from 'react';
-import { Table, Icon, Switch, Radio, Form, Divider, Card } from 'antd';
+import { Table, Icon, Switch, Radio, Form, Divider, Card, Button } from 'antd';
 
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -19,6 +19,8 @@ import saga from './saga';
 import { makeSource } from './selectors';
 
 import TableComponent from 'components/TableComponent';
+
+import { Filter } from 'components/Clients/Filter';
 
 import getClientsModel from './clientsModel';
 
@@ -44,7 +46,7 @@ class Clients extends React.Component {
           Клиенты
         </h1>
 
-        <Card title="Фильтр" extra={<a href="#">More</a>}>
+        <Card title={<Filter />} extra={<a href="#">More</a>}>
           <TableComponent columns={this.props.columns} gridSource={this.props.gridSource} />
         </Card>
 
