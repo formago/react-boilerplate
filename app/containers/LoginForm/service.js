@@ -1,4 +1,6 @@
-const request = {
+const keys = require('config/endpoints');
+
+const service = {
   /**
    * Pretends to post to a remote server
    * @param  {string}  endpoint The endpoint of the server that should be contacted
@@ -44,9 +46,6 @@ const request = {
         var url =
           "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/refresh/";
         var refreshToken = localStorage.refreshToken;
-        // var url =
-        //   "http://ec2-18-194-207-65.eu-central-1.compute.amazonaws.com:8080/rsAppsArm/auth/usermenu?refresh_atoken=" +
-        //   refreshToken;
         return fetch(url, {
           method: "GET",
           headers: new Headers({
@@ -63,4 +62,4 @@ const request = {
   }
 };
 
-export default request;
+export default service;

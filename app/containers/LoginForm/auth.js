@@ -1,4 +1,4 @@
-import request from "./request";
+import service from "./service";
 
 let localStorage;
 
@@ -19,7 +19,7 @@ const auth = {
   login(username, password) {
     // if (auth.loggedIn()) return Promise.resolve(true);
     // Post a fake request
-    return request.post("/login", { username, password }).then(response => {
+    return service.post("/login", { username, password }).then(response => {
       // Save token to local storage
       localStorage.token = response.armAccessToken;
       localStorage.refreshToken = response.armRefreshToken;
@@ -31,7 +31,7 @@ const auth = {
   },
 
   refreshAccessToken() {
-    return request.post("/refresh").then(response => {
+    return service.post("/refresh").then(response => {
       // Save token to local storage
       localStorage.token = response.accessToken;
       return response;
@@ -41,7 +41,7 @@ const auth = {
    * Logs the current user out
    */
   logout() {
-    return request.post("/logout");
+    return service.post("/logout");
   },
   /**
    * Checks if a user is logged in
@@ -57,7 +57,7 @@ const auth = {
   register(username, password) {
     // Post a fake request
     return (
-      request
+      service
         .post("/register", { username, password })
         // Log user in after registering
         .then(() => auth.login(username, password))
