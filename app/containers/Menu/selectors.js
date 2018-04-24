@@ -25,7 +25,16 @@ const makeSelectSource = () => createSelector(
   }
 );
 
+
+const makeMenuId = () => createSelector(
+  selectCabinetMenu,
+  (cabinetMenuState) => {
+    return cabinetMenuState.get('menuId')
+  }
+);
+
 export {
   selectCabinetMenu,
   makeSelectSource,
+  makeMenuId
 };

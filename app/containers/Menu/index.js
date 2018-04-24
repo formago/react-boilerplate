@@ -7,15 +7,22 @@ import injectSaga from 'utils/injectSaga';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import { connect } from 'react-redux';
-import { getMenuItems } from './actions';
+import { getMenuItems, setCurrentMenuItem } from './actions';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectSource } from './selectors';
+import { makeSelectSource, makeMenuId } from './selectors';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 class CabinetMenu extends React.Component {
+
+
+  constructor(props) {
+    console.log("constructor");
+    super(props)
+    this.menuOnSelect = this.menuOnSelect.bind(this)  
+  }
 
   componentWillMount() {
     this.getMenu();
@@ -23,6 +30,10 @@ class CabinetMenu extends React.Component {
 
   getMenu() {
     this.props.dispatch(getMenuItems()); // don't do it if we have loaded menu before, need check!
+  }
+
+  menuOnSelect(e) {
+    this.props.dispatch(setCurrentMenuItem(e.key));
   }
 
   call = function (it) {
@@ -42,8 +53,9 @@ class CabinetMenu extends React.Component {
   // menuItems = this.props.source.map((it) => this.call(it));
 
   render() {
+    console.log("render");
     return (
-      <Menu theme="dark" defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
+      <Menu theme="dark" onSelect={this.menuOnSelect} selectedKeys={[this.props.menuId]} defaultSelectedKeys={['2443']} mode="inline" className="cabinet-menu">
         {/* {this.menuItems} */}
         {this.props.source.map((it) => this.call(it))}
       </Menu>
@@ -52,11 +64,13 @@ class CabinetMenu extends React.Component {
 }
 
 CabinetMenu.propTypes = {
+  menuId: PropTypes.string,
   source: PropTypes.array,
   dispatch: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
+  console.log("mDispatchToProps");
   return {
     dispatch,
   };
@@ -64,6 +78,8 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   source: makeSelectSource(),
+  menuId: makeMenuId(),
+
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

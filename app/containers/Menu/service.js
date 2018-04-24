@@ -17,7 +17,7 @@ const service = {
       token;
 
     const data = [];
-    
+
     let userInfo;
     return fetch(url, {
       method: "GET",
@@ -28,6 +28,10 @@ const service = {
     }).then(response => {
       return response.json();
     });
+  },
+  setMenuId(menuId) {    
+    localStorage.menuId = menuId;
+    return true;
   }
 };
 
